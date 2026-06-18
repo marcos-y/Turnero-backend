@@ -33,6 +33,15 @@ exports.createCajero = async (req, res) => {
     }
 };
 
+exports.getDynamicDataCajero = async (req, res) => {
+    try {
+        const nuevo = await Cajero.getDynamicData(req.params.id);
+        res.status(201).json(nuevo);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener cajero' });
+    }
+};
+
 exports.updateCajero = async (req, res) => {
     try {
         const updated = await Cajero.update(req.params.id, req.body);

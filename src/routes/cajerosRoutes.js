@@ -4,6 +4,7 @@ const cajerosController = require('../controllers/cajerosController');
 
 router.get('/', cajerosController.getCajeros);
 router.get('/:id', cajerosController.getCajeroById);
+router.get('/:id/cajeroData', cajerosController.getDynamicDataCajero);
 router.post('/', cajerosController.createCajero);
 
 router.put('/:id', cajerosController.updateCajero);

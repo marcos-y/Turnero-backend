@@ -18,7 +18,7 @@ const getAll = async () => {
         FROM turnos t
         LEFT JOIN tipos_turno tipos_tur ON t.tipo_id = tipos_tur.id
         WHERE t.estado = 'pendiente' or t.estado = 'en_atencion'
-        LIMIT 5;
+        LIMIT 7;
     `);
 
     return rows;

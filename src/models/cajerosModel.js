@@ -37,6 +37,33 @@ const getByUsuario = async (usuario) => {
     return rows[0];
 };
 
+const getDynamicData = async (id) => {
+
+    const [columns] = await db.query(
+        `SELECT column_name
+        FROM information_schema.columns
+        WHERE table_name = 'cajeros'
+        AND column_name LIKE '%tipo_turno%'`);
+
+    if (columns.length === 0) {
+        return [];
+    }
+    const columnNames = columns.map(c => c.column_name);
+
+    // 2. Armar SELECT dinámico
+    const cols = columnNames
+        .map(col => `\`${col}\``)
+        .join(", ");
+
+    const [rows] = await db.query(
+        `SELECT ${cols}
+         FROM cajeros WHERE id = ${id}`
+    );
+
+    return rows;
+};
+
+
 const create = async ({ nombre, usuario, password }) => {
     const [result] = await db.query(
         `INSERT INTO cajeros (nombre, usuario, password, activo) VALUES (?, ?, ?, 0)`,
@@ -71,11 +98,11 @@ const updateEstado = async (id, activo) => {
     return result.affectedRows > 0;
 };
 
-const updateTipo = async (tipo,id) => {
+const updateTipo = async (tipo, id) => {
 
     const [result] = await db.query(
         `UPDATE cajeros SET id_tipo_usuario = ? WHERE id = ?`,
-        [tipo,id]
+        [tipo, id]
     );
 
     return result.affectedRows > 0;
@@ -139,6 +166,7 @@ module.exports = {
     remove,
     delet,
     getByUsuario,
+    getDynamicData,
     updateEstado,
     assignType,
     removeType,
