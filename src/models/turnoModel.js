@@ -109,7 +109,8 @@ const getByTipo = async (tipo_id, cajero_id) => {
         tipos_tur.color
         FROM turnos t
         LEFT JOIN tipos_turno tipos_tur ON t.tipo_id = tipos_tur.id
-        WHERE t.tipo_id IN (?) AND (t.cajero_id = ? OR t.cajero_id IS NULL) AND t.estado = 'pendiente' ;`,
+        WHERE t.tipo_id IN (?) AND (t.cajero_id = ? OR t.cajero_id IS NULL) AND t.estado = 'pendiente'
+        ORDER BY id ;`,
         [ids, cajero_id]
     );
 
