@@ -7,6 +7,7 @@ const getAll = async () => {
         t.codigo,
         t.tipo_id,
         t.box_id,
+        b.numero AS box_numero,
         t.cajero_id,
         t.estado,
         t.creado_en,
@@ -17,6 +18,7 @@ const getAll = async () => {
         tipos_tur.color
         FROM turnos t
         LEFT JOIN tipos_turno tipos_tur ON t.tipo_id = tipos_tur.id
+        LEFT JOIN boxes b ON b.id = t.box_id
         WHERE t.estado = 'pendiente' or t.estado = 'en_atencion'
         LIMIT 7;
     `);
@@ -73,7 +75,10 @@ const getByDia = async () => {
         t.finalizado_en,
         t.derivado,
         tipos_tur.descripcion,
-        c.nombre AS cajero_nombre
+        c.nombre AS cajero_nombre,
+        t.nro_factura,
+        t.cliente,
+        t.entrega_grande
         FROM turnos t
         LEFT JOIN tipos_turno tipos_tur ON t.tipo_id = tipos_tur.id
         LEFT JOIN cajeros c ON c.ID = t.cajero_id
