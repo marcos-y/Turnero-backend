@@ -16,6 +16,7 @@ router.put('/:id/asignar-box', controller.assignBox);
 router.put('/:id/cambiar-box', controller.changeBox);
 router.put('/:id/llamar', controller.callTurn);
 router.put('/:id/finalizar', controller.finishTurn);
+router.put('/:id/factura', controller.saveFactura);
 
 router.delete('/:id', controller.deleteTurno);
 

@@ -367,6 +367,18 @@ const obtenerMetricasPorDia = async () => {
     return rows;
 };
 
+const guardarFactura = async (id, nro_factura, cliente, entrega_grande) => {
+
+    const [result] = await db.query(
+        `UPDATE turnos
+        SET nro_factura = ? ,cliente = ? ,entrega_grande = ?
+        WHERE id = ?`,
+    [nro_factura,cliente,entrega_grande, id]
+    );
+
+    return result;
+};
+
 module.exports = {
     getAll,
     getTurnVisor,
@@ -383,5 +395,6 @@ module.exports = {
     getLastTurnosPrefijo,
     obtenerMetricasPorTurno,
     obtenerMetricasGlobales,
-    obtenerMetricasPorDia
+    obtenerMetricasPorDia,
+    guardarFactura 
 };

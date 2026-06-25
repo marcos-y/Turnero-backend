@@ -270,3 +270,22 @@ exports.getMetricasPorDia = async (req, res) => {
     }
 };
 
+exports.saveFactura = async (req, res) => {
+
+    try {        
+
+        const ok = await Turno.guardarFactura(req.params.id, req.body.nro_factura, req.body.cliente, req.body.entrega_grande);
+
+        if (!ok) {
+            return res.status(404).json({ error: 'Factura no encontrada' });
+        }
+
+        res.json({ message: 'Factura ingresada correctamente' });
+
+    } catch (error) {
+
+        console.error(error);
+        res.status(500).json({ error: "Error al ingresar factura" });
+    }
+};
+

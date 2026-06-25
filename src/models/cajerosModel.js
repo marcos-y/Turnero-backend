@@ -42,8 +42,9 @@ const getDynamicData = async (id) => {
     const [columns] = await db.query(
         `SELECT column_name
         FROM information_schema.columns
-        WHERE table_name = 'cajeros'
-        AND column_name LIKE '%tipo_turno%'`);
+        WHERE table_schema = 'turnero'
+        AND table_name = 'cajeros'
+        AND column_name LIKE '%tipo_turno%';`);
 
     if (columns.length === 0) {
         return [];
