@@ -12,7 +12,7 @@ router.put('/:id/password', cajerosController.updatePassword);
 router.put('/:id/estado', cajerosController.updateEstado);
 router.put('/:id/tipo', cajerosController.updateType);
 
-router.delete('/:id', cajerosController.deleteCajero);
+//router.delete('/:id', cajerosController.deleteCajero);
 router.delete('/:id/delete', cajerosController.destroyCajero);
 
 router.put('/:id/asignarTipoTurno', cajerosController.assignType);

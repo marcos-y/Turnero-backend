@@ -18,7 +18,7 @@ router.put('/:id/llamar', controller.callTurn);
 router.put('/:id/finalizar', controller.finishTurn);
 router.put('/:id/factura', controller.saveFactura);
 
-router.delete('/:id', controller.deleteTurno);
+//router.delete('/:id', controller.deleteTurno);
 
 /* Ultimos turnos */
 router.get('/:id/ultimosId', controller.getUltimosTurnosId);

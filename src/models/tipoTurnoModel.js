@@ -48,12 +48,12 @@ const create = async ({ codigo, descripcion, color, prefijo }) => {
     };
 };
 
-const update = async (id, { codigo, descripcion, color }) => {
+const update = async (id, { descripcion, color, prefijo }) => {
     const [result] = await db.query(
         `UPDATE tipos_turno 
-         SET codigo = ?, descripcion = ?, color = ?
+         SET descripcion = ?, color = ?, prefijo = ?
          WHERE id = ?`,
-        [codigo, descripcion, color, id]
+        [descripcion, color, prefijo, id]
     );
 
     return result.affectedRows > 0;
